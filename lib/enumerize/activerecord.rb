@@ -19,12 +19,13 @@ module Enumerize
 
     module InstanceMethods
       # https://github.com/brainspec/enumerize/issues/74
-      def write_attribute(attr_name, value)
+      def write_attribute(*params)
+        attr_name, value = params
         if self.class.enumerized_attributes[attr_name]
           _enumerized_values_for_validation[attr_name.to_s] = value
         end
 
-        super
+        super 
       end
 
       # Support multiple enumerized attributes
